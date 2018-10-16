@@ -1,6 +1,8 @@
 # conan_packager
 
-This is an attempt to integrate conan into my TeamCity build system. This was created when conan was still version 0.6 something and since conan has evolved a lot since I am not sure that it is really required any more.
+This is an attempt to integrate conan into my TeamCity build system. The top project and all dependencies are built by executing 
+the following steps in TeamCity. Old versions of the top package are cleaned up, the top package and missing dependencies are built 
+and all built packages are uploaded to to my conan server. Lastly the artifacts are deployed and gathered to the TeamCity server.
 
 I use it in five steps:
 
