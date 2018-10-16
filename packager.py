@@ -18,7 +18,8 @@ class ConanPackager:
     _package = None
     _profile = None
     _conan = None
-    _dependencies = None
+    _dependencies = []
+    _build_dependencies = {}
     _working_path = os.getcwd()
     _deploy_path = os.path.join(os.getcwd(), "deploy")
     _empty_deploy_file = "nothing_to_deploy.txt"
@@ -30,6 +31,7 @@ class ConanPackager:
         self._name = getattr(conanfile, "name", None)
         self._version = getattr(conanfile, "version", None)
         self._description = getattr(conanfile, "description", None)
+        self._build_dependencies = getattr(conanfile, "build_requires", {})
         self._user = user if user else self._user
         self._channel = channel if channel else self._channel
         self._package = "%s/%s@%s/%s" % (self._name, self._version, self._user, self._channel)
@@ -62,9 +64,11 @@ class ConanPackager:
 
     # Determine which packages needs to be built and returns the list of packages.
     def determine_packages_to_upload(self):
+        # Remove build dependencies from list of dependencies to build
+        dependencies = [x for x in self._dependencies if x not in self._build_dependencies.values()]
         to_upload = []
-        # Want to remove build requirements from this list
-        for dependency in self._dependencies:
+        # Build a list of all (non build requirements) packages to be built
+        for dependency in dependencies:
             to_upload.append(str(dependency))
         to_upload.append(str(self._package))
         return to_upload
