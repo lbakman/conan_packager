@@ -60,7 +60,7 @@ import json
 
 
 packages_file = "%package_list%"
-packager = ConanPackager(profile="%profile_name%")
+packager = ConanPackager(channel="%channel_name%", profile="%profile_name%")
 
 to_upload = None
 with open(packages_file, 'r') as infile:
