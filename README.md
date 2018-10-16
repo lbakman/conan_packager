@@ -4,8 +4,6 @@ This is an attempt to integrate conan into my TeamCity build system. The top pro
 the following steps in TeamCity. Old versions of the top package are cleaned up, the top package and missing dependencies are built 
 and all built packages are uploaded to to my conan server. Lastly the artifacts are deployed and gathered to the TeamCity server.
 
-I use it in five steps:
-
 ## Step 1: Clean
 
 Perform a cleanup of the local package that we are going to build. The varaibles channel_name and profile_name are set from TeamCity.
