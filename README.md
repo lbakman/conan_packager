@@ -2,7 +2,7 @@
 
 This is an attempt to integrate conan into my TeamCity build system. This was created when conan was still version 0.6 something and since conan has evolved a lot since I am not sure that it is really required any more. That is something I intend to find out.
 
-I use it in three steps:
+I use it in five steps:
 
 ## Step 1: Clean
 
